@@ -1,0 +1,49 @@
+.about>div{
+  width:70%;
+  border:2px solid var(--accent);
+  border-radius:15px;
+  padding:1rem 3rem;
+  margin:100px 0;
+}
+.about1{
+  border-radius:100%;
+  background:var(--text);
+}
+.about1 svg{
+  height:100px;
+  width:100px;
+  color:white;
+}
+
+.about p{
+  font-size:1.5rem;
+  text-align:center;
+}
+
+.about2>div{
+  padding:1rem;
+  background:var(--navbarbg);
+  width:30%;
+  height:120px;
+}
+
+.about3{
+gap:20px;
+width:100%;
+margin:20px 0;
+}
+.about3 span{
+  color:var(--primary);
+  font-weight:bold;
+}
+.about3>div{
+  padding:1rem;
+  background:var(--text);
+  color:var(--background);
+  width:20%;
+  height:50px;
+  border-radius:15px;
+  display:flex;
+  gap:30px;
+}
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Picsel Members</title>
+    <link rel="stylesheet" href="css/members.css">
+    <link rel="stylesheet" href="../style.css">
+  </head>
+  <body>
+    <div class="navbar flex flex-sa" >
+      <a href="/pages/members.html">Members</a>
+      <a href="/">
+        <img src="../assets/logo.webp" alt="logo">
+      </a>
+      <a href="/pages/about.html">About</a>
+    </div>
+
+    <h1 class="heading">Members</h1>
+    <div class="pfaculty">
+      <h2>Faculties</h2>
+      <div class="pfaculty1 flex flex-sa">
+        
+      </div>
+      
+    </div>
+
+    <div class="pfaculty">
+      <h2>Student Members</h2>
+      <div class=" flex flex-c">
+          <h3>Heads</h3>
+        <div class="pmembers1 flex">
+
+          
+        </div>
+          <h3>Assistants</h3>
+        <div class="pmembers2 flex">
+          
+        </div>
+        
+      </div>
+      
+    </div>
+
+    <div class="selector flex flex-sa"> </div>
+
+    <footer class="flex flex-c">
+      <div class="flex flex-sa">
+        <div>
+          <h2>PICSEL committee</h2>   
+          <p>Bringing students together through creativity, innovation, and collaboration—shaping a future where technology, arts, and culture thrive.</p>
+        </div> 
+        <div>
+          <h2>Quick Links</h2>   
+          <a href="/pages/about.html">About Us</a>
+          <a href="/pages/members.html">Members</a>
+        </div> 
+        <div>
+          <h2>Contact Us</h2>   
+          <a href="">picselcommittee@gmail.com</a>
+          <a href="">Instagram</a>
+          <a href=""> Great Nag Road, Nagpur-440009 </a>
+        </div> 
+      </div>
+      <span>
+        © 2025 PICSEL Committee. All rights reserved.
+      </span>
+    </footer>
+<script src="../rd.js"></script>
+<script src="../data.js"></script>
+<script>
+  function cardCreator(name,photo,post){
+    return renderer({
+      t:"div",
+      cn:["flex","flex-c","card"],
+      children:[
+        {
+          t:'img',
+          attr:{
+            src:photo,
+            alt:post
+          }
+        },
+        {
+          t:'h2',
+          txt:name
+        },{
+          t:'p',
+          txt:post
+        }
+      ]
+    });
+  }
+  function updateFaculties(){
+    const parent = fetchElement(".pfaculty1")
+    Data.faculties.forEach((entry,index)=>{
+      appendElement(parent,cardCreator(entry.name, `../assets/${entry.photo}`, entry.post));
+    });
+  }
+
+  updateFaculties();
+
+  /*
+  function updateMembers(){
+    const parent = fetchElement(".pmembers1")
+    Data.teams[0].head.forEach((entry,index)=>{
+      appendElement(parent,cardCreator(entry.name, `../assets/${entry.photo}`, entry.post));
+    });
+  }
+
+  updateMembers();
+  */
+
+  function buttonElistener(e){
+    const parent1 = fetchElement(".pmembers1")
+    const parent2 = fetchElement(".pmembers2")
+
+    const team = (Data.teams.filter(entry=>entry.name===e.target.id))[0];
+    console.log(team);
+    team.head.forEach((entry,index)=>{
+      appendElement(parent1,cardCreator(entry.name, `../assets/${entry.photo}`, entry.post));
+    });
+    team.asst.forEach((entry,index)=>{
+      appendElement(parent2,cardCreator(entry.name, `../assets/${entry.photo}`, entry.post));
+    });
+  }
+
+  function addButtons(){
+const parent = fetchElement(".selector")
+    Data.teams.forEach(entry=>{
+      appendElement(parent,renderer({t:'button',txt:entry.name,attr:{id:entry.name},onclick:buttonElistener}));
+    });
+  }
+
+  addButtons();
+
+
+</script>
+  </body>
+</html>
