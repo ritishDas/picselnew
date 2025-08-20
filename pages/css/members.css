@@ -23,7 +23,7 @@ h1{
 .selector{
   position:fixed;
   width:80%;
-  height:50px;
+  height:70px;
   background:rgb(255,255,255,0.5);
   backdrop-filter:blur(10px);
   top:80vh;
@@ -40,4 +40,8 @@ h1{
 .selector>button:hover{
   background:var(--accent);
   cursor:pointer;
+}
+
+.specialbtn{
+  background:var(--primary) !important;
 }

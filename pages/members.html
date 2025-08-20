@@ -7,11 +7,11 @@
   </head>
   <body>
     <div class="navbar flex flex-sa" >
-      <a href="/pages/members.html">Members</a>
-      <a href="/">
+      <a href="/picselnew/pages/members.html">Members</a>
+      <a href="/picselnew">
         <img src="../assets/logo.webp" alt="logo">
       </a>
-      <a href="/pages/about.html">About</a>
+      <a href="/picselnew/pages/about.html">About</a>
     </div>
 
     <h1 class="heading">Members</h1>
@@ -40,7 +40,9 @@
       
     </div>
 
-    <div class="selector flex flex-sa"> </div>
+      <div class="selector flex flex-sa">
+        
+      </div>
 
     <footer class="flex flex-c">
       <div class="flex flex-sa">
@@ -50,8 +52,8 @@
         </div> 
         <div>
           <h2>Quick Links</h2>   
-          <a href="/pages/about.html">About Us</a>
-          <a href="/pages/members.html">Members</a>
+          <a href="/picselnew/pages/about.html">About Us</a>
+          <a href="/picselnew/pages/members.html">Members</a>
         </div> 
         <div>
           <h2>Contact Us</h2>   
@@ -67,6 +69,9 @@
 <script src="../rd.js"></script>
 <script src="../data.js"></script>
 <script>
+    const pmembers1 = fetchElement(".pmembers1")
+    const pmembers2 = fetchElement(".pmembers2")
+
   function cardCreator(name,photo,post){
     return renderer({
       t:"div",
@@ -109,29 +114,61 @@
   updateMembers();
   */
 
-  function buttonElistener(e){
-    const parent1 = fetchElement(".pmembers1")
-    const parent2 = fetchElement(".pmembers2")
+    let currentTeam;
+    
+    function checkName(name){
+      Data.teams.forEach((entry, ind)=>{
+        if(entry.name === name){
+          currentTeam = {entry, ind}
+        }
+      });
+    }
 
-    const team = (Data.teams.filter(entry=>entry.name===e.target.id))[0];
-    console.log(team);
+  function buttonElistener(e){
+
+     checkName(e.target.id);
+    const team = currentTeam.entry;
+    const selector = fetchElement('.selector');
+    while(selector.firstChild) selector.removeChild(selector.firstChild);
+    while(pmembers1.firstChild) pmembers1.removeChild(pmembers1.firstChild);
+    while(pmembers2.firstChild) pmembers2.removeChild(pmembers2.firstChild);
+    addButtons(currentTeam.ind);
     team.head.forEach((entry,index)=>{
-      appendElement(parent1,cardCreator(entry.name, `../assets/${entry.photo}`, entry.post));
+      appendElement(pmembers1,cardCreator(entry.name, `../assets/${entry.photo}`, entry.post));
     });
     team.asst.forEach((entry,index)=>{
-      appendElement(parent2,cardCreator(entry.name, `../assets/${entry.photo}`, entry.post));
+      appendElement(pmembers2,cardCreator(entry.name, `../assets/${entry.photo}`, entry.post));
     });
   }
 
-  function addButtons(){
-const parent = fetchElement(".selector")
-    Data.teams.forEach(entry=>{
-      appendElement(parent,renderer({t:'button',txt:entry.name,attr:{id:entry.name},onclick:buttonElistener}));
+
+  function addButtons(num){
+    const parent = fetchElement(".selector")
+    Data.teams.forEach((entry,ind)=>{
+      if(ind===num) 
+        appendElement(parent,renderer({
+          t:'button',
+          cn:['specialbtn','gradient-btn'],
+          children:[{t:'span'}],
+          txt:entry.name,
+          attr:{id:entry.name},
+          onclick:buttonElistener
+        }));
+      else
+        appendElement(parent,renderer({
+          t:'button',
+          cn:['gradient-btn'],
+          children:[{t:'span'}],
+          txt:entry.name,
+          attr:{id:entry.name},
+          onclick:buttonElistener
+        }));
     });
   }
 
-  addButtons();
+  addButtons(0);
 
+    fetchElement('#Core').click();
 
 </script>
   </body>
