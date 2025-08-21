@@ -20,15 +20,22 @@
   text-align:center;
 }
 
+.about2{
+  flex-wrap:wrap;
+  gap:30px;
+}
+
 .about2>div{
   padding:1rem;
   background:var(--navbarbg);
   width:30%;
+  min-width:200px;
   height:300px;
 }
 
 .about3{
 gap:20px;
+flex-wrap:wrap;
 width:100%;
 margin:20px 0;
 }
@@ -39,6 +46,7 @@ margin:20px 0;
 }
 .about3>div{
   width:20%;
+  min-width:200px;
   height:100px;
   padding:1rem;
   background:var(--text);
