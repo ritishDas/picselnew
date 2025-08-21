@@ -58,3 +58,8 @@ margin:20px 0;
   font-size:1.5rem;
 }
 
+@media screen and (max-width: 747px) {
+.about>div{
+  width:90%;
+}
+}
