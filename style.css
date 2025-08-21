@@ -204,7 +204,7 @@ body>h2{
   background:linear-gradient(var(--secondary),var(--accent));
   position:absolute;
   left:50vw;
-  top:1200px;
+  top:1150px;
 }
 
 .features-1 div{
@@ -257,6 +257,8 @@ body>h2{
 .vision>div>div{
   background:white;
   padding:3rem;
+  width:30%;
+  min-width:200px;
   border-radius:15px;
   background:var(--visionbg);
   border:2px solid var(--secondary);
@@ -265,6 +267,10 @@ body>h2{
 .faculties1,.members1{
   flex-wrap:wrap;
   gap:25px;
+}
+
+.faculties,.members{
+  margin-top:5rem;
 }
 
 .faculties a,.members a{
@@ -377,7 +383,6 @@ footer img,footer svg{
 .features{
   display:flex;
   height:auto;
-  margin-bottom:5rem;
   flex-wrap:wrap;
   gap:25px;
 }
