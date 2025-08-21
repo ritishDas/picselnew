@@ -115,6 +115,26 @@ body>h2{
   margin-bottom:0;
 }
 
+.gradient-div{
+  overflow:hidden;
+  position:relative;
+}
+.gradient-div>span{
+  display:block;
+  position:absolute;
+  width:50px;
+  height:500px;
+  background:linear-gradient(to left,transparent,var(--background),transparent);
+  opacity:0.5;
+  top:0;
+  left:0;
+  transform:translateX(-250px) rotate(45deg);
+  transition:1s;
+}
+
+.gradient-div:hover>span{
+  transform:translateX(500px);
+}
 .gradient-btn{
   height:2.5rem;
   background:var(--primary);
@@ -254,6 +274,13 @@ body>h2{
 
 .faculties a:hover,.members a:hover{
   background:var(--primary);
+}
+
+.faculties p,.members p{
+  width:60%;
+  margin:100px auto;
+  text-align:center;
+  font-size:2rem;
 }
 
 footer{
